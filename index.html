@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatServer</title>
+    <style>
+        #chat-box {
+            height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" placeholder="gast" value="gast" maxlength="15" name="username" id="username">
+    <div id="chat-box"></div>
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        const socket = new WebSocket('ws://3413-193-170-158-243.ngrok-free.app');
+        let last_message = "";
+
+        socket.onopen = function (event) {
+            console.log('WebSocket is connected.');
+        };
+
+        socket.onmessage = function (event) {
+            const chatBox = document.getElementById('chat-box');
+            console.log(event);
+            chatBox.innerHTML += `<p>${event.data}</p>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+
+        function sendMessage() {
+            const chatBox = document.getElementById('chat-box');
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value;
+            if (message != null && message != "" && message != last_message) {
+                chatBox.innerHTML += `<p>Du: ${message}</p>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                socket.send(`${document.getElementById("username").value}: ${message}`);
+                last_message = message;
+                messageInput.value = '';
+            }
+        }
+    </script>
+</body>
+<style>
+    html {
+        color-scheme: dark;
+    }
+</style>
+
+</html>
