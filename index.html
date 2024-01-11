@@ -55,8 +55,9 @@
                 chatBox.scrollTop = chatBox.scrollHeight;
                 socket.send(`${document.getElementById("username").value}: ${message}`);
                 last_message = message;
-                messageInput.value = '';
+                
             }
+            messageInput.value = '';
         }
     </script>
 </body>
