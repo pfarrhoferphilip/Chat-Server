@@ -7,7 +7,7 @@
     <title>ChatServer</title>
     <style>
         #chat-box {
-            height: 300px;
+            height: 800px;
             overflow-y: scroll;
         }
     </style>
@@ -20,18 +20,28 @@
         <input type="text" id="message-input" placeholder="Type your message...">
         <button type="submit">Send</button>
     </form>
+    <form id="img-form">
+        <input type="text" placeholder="Image Url" id="image-input" name="image-input">
+        <button type="submit">Send Image</button>
+    </form>
 
     <script>
         const socket = new WebSocket('wss://620e-193-170-158-243.ngrok-free.app');
         let last_message = "";
 
         const form = document.getElementById("form");
+        const img_form = document.getElementById("img-form");
 
         // Add an event listener for the form submit event
         form.addEventListener("submit", function (event) {
             // First, prevent the default form submission behavior
             event.preventDefault();
             sendMessage();
+        })
+        img_form.addEventListener("submit", function (event) {
+            // First, prevent the default form submission behavior
+            event.preventDefault();
+            sendImage();
         })
 
         socket.onopen = function (event) {
@@ -55,9 +65,24 @@
                 chatBox.scrollTop = chatBox.scrollHeight;
                 socket.send(`${document.getElementById("username").value}: ${message}`);
                 last_message = message;
-                
+
             }
             messageInput.value = '';
+        }
+
+        function sendImage() {
+            const chatBox = document.getElementById('chat-box');
+            const imageInput = document.getElementById('image-input');
+            const message = imageInput.value;
+            console.log(message);
+            if (message != null && message != "") {
+                chatBox.innerHTML += `<p>Du: <img height="200px" src="${message}"></p>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                socket.send(`${document.getElementById("username").value}: <img height="200px" src="${message}">`);
+                last_message = message;
+
+            }
+            imageInput.value = '';
         }
     </script>
 </body>
