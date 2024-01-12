@@ -15,6 +15,8 @@ class ChatServer implements MessageComponentInterface
     {
 
         $this->clients = new \SplObjectStorage;
+        echo "Server started on Port 8080! \n";
+        echo "Press Ctr+C to Quit \n";
     }
 
     public function onOpen(ConnectionInterface $conn)

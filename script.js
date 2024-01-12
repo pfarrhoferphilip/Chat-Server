@@ -1,8 +1,10 @@
+/* CHANGE THIS TO YOUR SERVERS IP-ADRESS =>*/ const address = "localhost:8080";
+
 if (!localStorage.getItem("username")) {
     localStorage.setItem("username", document.getElementById("username").value);
 }
 
-const socket = new WebSocket('wss://620e-193-170-158-243.ngrok-free.app');
+const socket = new WebSocket(`ws://${address}`);
         let last_message = "";
 
         const form = document.getElementById("form");
