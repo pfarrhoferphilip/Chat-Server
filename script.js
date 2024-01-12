@@ -6,7 +6,7 @@ if (!localStorage.getItem("username")) {
 
 document.getElementById("username").value = localStorage.getItem("username");
 
-const socket = new WebSocket(`ws://${address}:${Port}`);
+const socket = new WebSocket(`wss://${address}:${Port}`);
         let last_message = "";
 
         const form = document.getElementById("form");
