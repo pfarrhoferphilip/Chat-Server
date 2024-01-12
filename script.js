@@ -4,6 +4,8 @@ if (!localStorage.getItem("username")) {
     localStorage.setItem("username", document.getElementById("username").value);
 }
 
+document.getElementById("username").value = localStorage.getItem("username");
+
 const socket = new WebSocket(`ws://${address}:${Port}`);
         let last_message = "";
 
