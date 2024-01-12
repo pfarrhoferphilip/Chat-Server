@@ -1,10 +1,10 @@
-/* CHANGE THIS TO YOUR SERVERS IP-ADRESS =>*/ const address = "localhost:8080";
+/* CHANGE THIS TO YOUR SERVERS IP-ADRESS =>*/ const address = "localhost"; const Port = "8080";
 
 if (!localStorage.getItem("username")) {
     localStorage.setItem("username", document.getElementById("username").value);
 }
 
-const socket = new WebSocket(`ws://${address}`);
+const socket = new WebSocket(`ws://${address}:${Port}`);
         let last_message = "";
 
         const form = document.getElementById("form");
