@@ -1,4 +1,4 @@
-/* CHANGE THIS TO YOUR SERVERS IP-ADRESS =>*/ const address = "localhost"; const Port = "8080";
+/* CHANGE THIS TO YOUR SERVERS IP-ADRESS =>*/ const address = "0d71-193-170-158-243.ngrok-free.app"; const Port = "8080";
 
 if (!localStorage.getItem("username")) {
     localStorage.setItem("username", document.getElementById("username").value);
