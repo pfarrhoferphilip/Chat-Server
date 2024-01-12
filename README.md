@@ -2,7 +2,7 @@ Find Webpage here: https://pfarrhoferphilip.github.io/Chat-Server
 
 (Currently only works if I run the Server on my PC)
 
-# Setting up you own Server: #
+# Setting up your own Server: #
 
 1.) Download the respository.
 
