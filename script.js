@@ -1,4 +1,4 @@
-/* CHANGE THIS TO YOUR SERVERS IP-ADRESS =>*/ const address = "0d71-193-170-158-243.ngrok-free.app"; const Port = "8080";
+/* CHANGE THIS TO YOUR SERVERS IP-ADRESS =>*/ const address = "localhost"; const Port = "8080"; const Protocol = "wss";
 
 if (!localStorage.getItem("username")) {
     localStorage.setItem("username", document.getElementById("username").value);
@@ -6,7 +6,8 @@ if (!localStorage.getItem("username")) {
 
 document.getElementById("username").value = localStorage.getItem("username");
 
-const socket = new WebSocket(`wss://${address}:${Port}`);
+console.log(`wss://${address}:${Port}`)
+const socket = new WebSocket(`${Protocol}://${address}:${Port}`);
         let last_message = "";
 
         const form = document.getElementById("form");
