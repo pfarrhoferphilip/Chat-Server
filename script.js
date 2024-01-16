@@ -54,14 +54,15 @@ const socket = new WebSocket(`${Protocol}://${address}`);
         };
 
         function sendMessage() {
+            let date = new Date();
             const chatBox = document.getElementById('chat-box');
             const messageInput = document.getElementById('message-input');
             const message = messageInput.value;
             console.log(message);
             if (message != null && message != "" && message != last_message) {
-                chatBox.innerHTML += `<p>Du: ${message}</p>`;
+                chatBox.innerHTML += `<p>Du (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}): ${message}</p>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-                socket.send(`${localStorage.getItem("username")}: ${message}`);
+                socket.send(`${localStorage.getItem("username")} (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}): ${message}`);
                 last_message = message;
 
             }
@@ -69,14 +70,15 @@ const socket = new WebSocket(`${Protocol}://${address}`);
         }
 
         function sendImage() {
+            let date = new Date();
             const chatBox = document.getElementById('chat-box');
             const imageInput = document.getElementById('image-input');
             const message = imageInput.value;
             console.log(message);
             if (message != null && message != "") {
-                chatBox.innerHTML += `<p>Du: <img height="200px" src="${message}"></p>`;
+                chatBox.innerHTML += `<p>Du (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}): <img height="200px" src="${message}"></p>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-                socket.send(`${document.getElementById("username").value}: <img height="200px" src="${message}">`);
+                socket.send(`${document.getElementById("username").value} (${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}): <img height="200px" src="${message}">`);
                 last_message = message;
 
             }
